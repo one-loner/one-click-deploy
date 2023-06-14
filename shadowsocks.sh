@@ -6,7 +6,20 @@ fi
 echo installing packages
 apt-get install -y shadowsocks-libev simple-obfs openssl curl
 ipaddr=$(curl ifconfig.me/ip)
-p=$(openssl rand -base64 8)
+echo "Enter password on shadowsocks or just press enter to generate random password: "
+read p
+if [ -z "$p" ];then
+   p=$(openssl rand -base64 8)
+fi
+echo ""
+echo "server: "$ipaddr
+echo 'port": 80'
+echo 'method: chacha20-ietf-poly1305'
+echo "Password: " $p
+echo 'Plugin: simple-obfs'
+echo 'Obfuscation method: http'
+echo 'Obfuscation host: '$ipaddr
+echo ""
 echo "{" > /etc/shadowsocks-libev/config.json
 echo '' >> /etc/shadowsocks-libev/config.json
 echo '"server":"'$ipaddr'",' >> /etc/shadowsocks-libev/config.json
