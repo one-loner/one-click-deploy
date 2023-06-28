@@ -21,6 +21,7 @@ docker run -d  --name=wireguard --cap-add=NET_ADMIN --cap-add=SYS_MODULE -e PUID
 mkdir wg_peers
 for i in $(seq 1 115);
 do
-  docker exec wireguard cat /config/peer$i/peer$i.conf > wg_peers/peer$i.conf
+  docker cp wireguard:/config/peer$i/peer$i.conf wg_peers/peer$i.conf
 done
-echo "Done. Your peer's configuration files is in directory wg_peers."
+tar cvf wg_peers.tar wg_peers/
+echo "Done. Your peer's configuration files is in directory wg_peers and in archive wg_peers.tar."

@@ -34,7 +34,8 @@ docker run -d  --name=wireguard443 --cap-add=NET_ADMIN --cap-add=SYS_MODULE -e P
 mkdir wg443_peers
 for i in $(seq 1 115);
 do
-  docker exec wireguard443 cat /config/peer$i/peer$i.conf > wg443_peers/peer$i.conf
+  docker cp wireguard443:/config/peer$i/peer$i.conf wg443_peers/peer$i.conf
   sed -i "s/:51820/:443/gi" wg443_peers/peer$i.conf
 done
-echo "Done. Your peer's configuration files is in directory wg443_peers."
+tar cvf wg443_peers.tar wg443_peers/
+echo "Done. Your peer's configuration files is in directory wg443_peers and in archive wg443_peers.tar."
