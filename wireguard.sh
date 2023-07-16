@@ -25,3 +25,4 @@ do
 done
 tar cvf wg_peers.tar wg_peers/
 echo "Done. Your peer's configuration files is in directory wg_peers and in archive wg_peers.tar."
+echo "if extractoin of peers don't works, laucnch script wireguard_get_peers.sh"

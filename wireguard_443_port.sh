@@ -39,3 +39,4 @@ do
 done
 tar cvf wg443_peers.tar wg443_peers/
 echo "Done. Your peer's configuration files is in directory wg443_peers and in archive wg443_peers.tar."
+echo "if extractoin of peers don't works, laucnch script wireguard443_get_peers.sh"
